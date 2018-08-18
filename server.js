@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
+const PORT = process.env.PORT || 5000
 
 router.use(function (req, res, next) {
   next();
@@ -29,5 +30,5 @@ router.get("/videos.html", function(req, res){
 
 app.use("/", router);
 app.use(express.static("assets"));
-app.listen(3000, () => console.log('running on 3000'));
+app.listen(PORT , () => console.log('running on PORT: ' + PORT));
 
