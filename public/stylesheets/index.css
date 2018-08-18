@@ -1,0 +1,127 @@
+﻿#intro{
+    padding-top:25vh;
+}
+
+.headerSub{
+    font-weight: 400;
+    font-size: 36px;
+    color: #333333;
+}
+
+#top{
+    background: linear-gradient(to bottom, #638BC8 0%, #4B153C 100%);
+    min-height:100%;
+    min-width:100%;
+    padding-right:-230px;
+}
+
+.main-expanded #top .center-align{
+    text-align: center;
+    padding-right:60px;
+}
+
+.main-collapsed #top .center-align{
+    text-align: center;
+    padding-right:230px;
+}
+
+
+.media {
+    text-align: center;
+}
+
+.media img {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    margin-left: 0px;
+    border-radius: 25px;
+}
+
+    .media img:hover {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    
+#spinnerContainer{
+    position: absolute;
+    left:50%;
+    right:50%;
+    bottom:33%;
+}
+/* #spinner{
+    
+} */
+
+#scrollContainer{
+    position: absolute;
+    bottom: 0;
+}
+
+/* .main-expanded #scrollContainer{
+    padding-left:60px;
+}
+
+.main-collapsed #scrollContainer{
+    padding-left:230px;
+} */
+
+#scroller {
+    opacity:1;
+    position: relative;
+    height: 180px;
+    width: 100vw;
+    overflow: hidden;
+}
+
+    #scroller .innerScrollArea {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    #scroller ul {
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+
+    #scroller li {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        position: absolute;
+    }
+
+.instaPic {
+    border-radius: 50px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+}
+
+    .instaPic:hover {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+
+
+
+/* @media only screen and (max-width: 1200) {
+    .spinner{
+        align-content: center;
+        margin-right:200px;
+    }
+    #wrapper{
+        background-color:blue;
+    }
+    div{
+        color: red;
+    }
+} */

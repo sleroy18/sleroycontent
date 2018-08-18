@@ -1,0 +1,181 @@
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Sean LeRoy</title>
+    <link text rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <link text/css rel="stylesheet" href="/stylesheets/yeti"> -->
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link text rel="stylesheet" href="stylesheets/global.css">
+    <link text rel="stylesheet" href="stylesheets/stream.css">
+  </head>
+
+  <body>
+    <!-- Bootstrap row -->
+    <div class="row" id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-container" class="sidebar-expanded d-none
+        d-md-block">
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+          <!-- Separator with title -->
+          <li class="list-group-item sidebar-separator-title
+            text-muted d-flex align-items-center">
+            <small class="menu-collapsed">MAIN MENU</small>
+          </li>
+          <!-- /END Separator -->
+          <!-- Menu with submenu -->
+          <a href="index.html" class="bg-dark list-group-item
+            list-group-item-action flex-column
+            align-items-start">
+            <span class="fa fa-user fa-fw mr-3"></span>
+            <span class="menu-collapsed">Home</span>
+          </a>
+          <a id="contentDropdown" href="#submenu1" data-toggle="collapse"
+            aria-expanded="false" class="dropdown bg-dark list-group-item
+            list-group-item-action flex-column
+            align-items-start">
+            <div class="d-flex w-100 justify-content-start
+              align-items-center">
+              <span class="fa fa-youtube-play fa-fw mr-3"></span>
+              <span class="menu-collapsed">Content</span>
+              <span id="dropdown-icon1" class="fa fa-angle-right ml-auto
+                menu-collapsed"></span>
+            </div>
+          </a>
+          <!-- Submenu content -->
+          <div id='submenu1' class="collapse sidebar-submenu">
+            <a href="videos.html" class="list-group-item
+              list-group-item-action bg-dark text-white">
+              <span class="menu-collapsed">Videos</span>
+            </a>
+            <a href="stream.html" class="list-group-item
+              list-group-item-action bg-dark text-white">
+              <span class="menu-collapsed">Stream</span>
+            </a>
+          </div>
+          <a id="expDropdown" href="#submenu2" data-toggle="collapse"
+            aria-expanded="false" class="dropdown bg-dark list-group-item
+            list-group-item-action flex-column
+            align-items-start">
+            <div class="d-flex w-100 justify-content-start
+              align-items-center">
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="menu-collapsed">Experience</span>
+              <span id="dropdown-icon2" class="fa fa-angle-right ml-auto
+                menu-collapsed"></span>
+            </div>
+          </a>
+          <!-- Submenu exp -->
+          <div id='submenu2' class="collapse sidebar-submenu">
+            <a href="exp.html#languages" class="list-group-item
+              list-group-item-action bg-dark text-white">
+              <span class="menu-collapsed">Languages</span>
+            </a>
+            <a href="exp.html#experience-education" class="list-group-item
+              list-group-item-action bg-dark text-white">
+              <span class="menu-collapsed">Education</span>
+            </a>
+            <a href="exp.html#experience-work" class="list-group-item
+              list-group-item-action bg-dark text-white">
+              <span class="menu-collapsed">Work</span>
+            </a>
+          </div>
+          <a href="files/sleroyResume.pdf" target="_blank" aria-expanded="false"
+            class="bg-dark list-group-item
+            list-group-item-action flex-column
+            align-items-start">
+            <div class="d-flex w-100 justify-content-start
+              align-items-center">
+              <i class="fa fa-file-pdf-o fa-fw mr-3"></i>
+              <span class="menu-collapsed">Download Resume</span>
+            </div>
+          </a>
+          <a href="#" data-toggle="sidebar-collapse" class="bg-dark
+            list-group-item list-group-item-action d-flex
+            align-items-center">
+            <div class="d-flex w-100 justify-content-start
+              align-items-center">
+
+              <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+              <span id="collapse-text" class="menu-collapsed">Collapse</span>
+            </div>
+          </a>
+        </ul>
+        <!-- List Group END-->
+      </div>
+      <!-- sidebar-container END -->
+      <div id="main">
+        <div id="streamContainer" class="row">
+          <div class="col">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/live_stream?channel=UC8GBFCNFems1_g4XEE3OVaQ"
+              frameborder="1" controls="1" autoplay="1" allowfullscreen></iframe>
+          </div>
+          <div class="col">
+            <button onclick="authenticate().then(loadClient)">authorize and load</button>
+            <button onclick="execute()">execute</button>
+            <p>Test</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+    /**
+     * Sample JavaScript code for youtube.liveBroadcasts.list
+     * See instructions for running APIs Explorer code samples locally:
+     * https://developers.google.com/explorer-help/guides/code_samples#javascript
+     */
+
+    function authenticate() {
+      return gapi.auth2.getAuthInstance()
+        .signIn({ scope: "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.readonly" })
+        .then(function () { console.log("Sign-in successful"); },
+          function (err) { console.error("Error signing in", err); });
+    }
+    function loadClient() {
+      return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function () { console.log("GAPI client loaded for API"); },
+          function (err) { console.error("Error loading GAPI client for API", err); });
+    }
+    // Make sure the client is loaded and sign-in is complete before calling this method.
+    function execute() {
+      return gapi.client.youtube.liveBroadcasts.list({
+        "part": "status",
+        "broadcastType": "all",
+        "id": "UCubOLhTBRsFvrTobl2DwZIQ"
+      })
+        .then(function (response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("Response", response);
+        },
+          function (err) { console.error("Execute error", err); });
+    }
+    gapi.load("client:auth2", function () {
+      gapi.auth2.init({ client_id: 'AIzaSyDMEjeI2pU25ZngJh_639KdnnsILMtwzi8' });
+    });
+  </script>
+    <!--    <iframe width="560" height="315" src="https://www.youtube.com/embed/9PWu0o-UyLs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <object width="640" height="390">
+            <param name="movie"
+                   value="https://www.youtube.com/embed/live_stream&channel=UC8GBFCNFems1_g4XEE3OVaQ?version=3&autoplay=1&autohide=1&controls=0"></param>
+            <param name="allowScriptAccess" value="always"></param>
+            <embed src="https://www.youtube.com/embed/live_stream&channel=UC8GBFCNFems1_g4XEE3OVaQ?version=3&autoplay=1&autohide=1&controls=0
+                   type="application/x-shockwave-flash"
+                   allowscriptaccess="always"
+                   width="640" height="390"></embed>
+          </object>
+    
+    <script type="text/javascript" src="script/progressbar.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script type="text/javascript"
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="script/global.js"></script>
+    <script type="text/javascript" src="script/stream.js"></script>
+  </body>
+
+</html>

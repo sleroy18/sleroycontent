@@ -1,0 +1,20 @@
+body{
+    background: linear-gradient(to bottom, #d17d6c 0%, #e84d0b 100%);
+    min-height:100%;
+    min-width:100%;
+    padding-right:-230px;
+}
+
+#streamContainer{
+    position: absolute;
+}
+
+.main-expanded #streamContainer{
+    text-align: center;
+    padding-right:60px;
+}
+
+.main-collapsed #top .center-align{
+    text-align: center;
+    padding-right:230px;
+}
