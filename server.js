@@ -1,34 +1,32 @@
-var express = require("express");
-var app = express();
-var router = express.Router();
-var path = __dirname + '/views/';
-const PORT = process.env.PORT || 5000
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
-router.use(function (req, res, next) {
-  next();
+//app.set('views', path.join(__dirname, '/views'));
+//console.log(__dirname);
+
+router.get('/', function(req, res) {
+    res.sendFile(__dirname + '/views/index.html');
+    //__dirname : It will resolve to your project folder.
 });
 
-router.get("/", function (req, res) {
-  res.sendFile(path + "index.html");
+router.get('/exp', function(req, res) {
+    res.sendFile(path.join(__dirname + '/views/exp.html'));
 });
 
-router.get("/index.html", function (req, res) {
-  res.sendFile(path + "index.html");
+router.get('/stream', function(req, res) {
+    res.sendFile(path.join(__dirname + '/views/stream.html'));
 });
 
-router.get("/exp.html", function(req, res){
-  res.sendFile(path + "exp.html");
+router.get('/videos', function(req, res) {
+    res.sendFile(path.join(__dirname + '/views/videos.html'));
 });
 
-router.get("/stream.html", function(req, res){
-  res.sendFile(path + "stream.html");
-});
+app.use(express.static(__dirname + '/public'));
 
-router.get("/videos.html", function(req, res){
-  res.sendFile(path + "videos.html");
-});
+//add the router
+app.use('/', router);
+app.listen(process.env.port || 3000);
 
-app.use("/", router);
-app.use(express.static("assets"));
-app.listen(PORT , () => console.log('running on PORT: ' + PORT));
-
+console.log('Running at Port 3000');
